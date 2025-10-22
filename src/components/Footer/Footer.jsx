@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="bg-linear-to-r from-slate-900 via-sky-900 to-slate-800 text-gray-300 pt-10 pb-5">
+    <footer className="custom-gradient pt-10 pb-5">
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-3 gap-8">
         <div>
           <h3 className="text-lg font-semibold text-sky-400 mb-3">

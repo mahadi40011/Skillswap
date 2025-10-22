@@ -8,3 +8,7 @@
 .my-container{
   @apply container mx-auto
 }
+
+.custom-gradient{
+  @apply bg-linear-to-r from-slate-900 via-sky-900 to-slate-800 text-gray-300
+}

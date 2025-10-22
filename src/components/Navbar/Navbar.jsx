@@ -17,7 +17,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar  shadow-sm bg-linear-to-r from-slate-900 via-sky-900 to-slate-800 text-gray-300">
+    <div className="navbar shadow-sm custom-gradient">
       <div className="my-container navbar">
         <div className="navbar-start flex justify-start items-center">
           <div className="dropdown">
@@ -32,14 +32,18 @@ const Navbar = () => {
             </ul>
           </div>
           <img className="w-12 h-12 rounded-full" src={logo} alt="" />
-          <span className="text-4xl ml-3 font-bold hidden md:block">SkillSwap </span>
+          <span className="text-4xl ml-3 font-bold hidden md:block">
+            SkillSwap{" "}
+          </span>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItem}</ul>
         </div>
         <div className="navbar-end">
           <img className="w-12 h-12 rounded-full" src={userIcon} alt="" />
-          <Link className="btn bg-sky-900 border-none text-white text-xl ml-2">Login</Link>
+          <Link className="btn bg-sky-900 border-none text-white text-xl ml-2">
+            Login
+          </Link>
         </div>
       </div>
     </div>
