@@ -1,23 +1,26 @@
 import React, { useState } from "react";
+import { FaEyeSlash } from "react-icons/fa";
+import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const [emailError, setEmailError] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  
-  //email validation
-    const handleEmailFieldOnBlur = (e) => {
-      const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (e.target.value === "") return setEmailError("");
-      if (!emailValidation.test(email)) {
-        setEmailError("Email invalid");
-        return;
-      } else return setEmailError("");
-    };
+  const [showPassword, setShowPassword] = useState(false);
 
-  // Password validation 
+  //email validation
+  const handleEmailFieldOnBlur = (e) => {
+    const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (e.target.value === "") return setEmailError("");
+    if (!emailValidation.test(email)) {
+      setEmailError("Email invalid");
+      return;
+    } else return setEmailError("");
+  };
+
+  // Password validation
   const handlePasswordValidation = (e) => {
     setPassword(e.target.value);
     const passwordValidation =
@@ -33,8 +36,6 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    
   };
 
   return (
@@ -85,18 +86,27 @@ const Register = () => {
           <span className="text-red-500">{emailError}</span>
 
           {/* Password */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
-            Password
-          </label>
-          <input
-            type="password"
-            placeholder="Enter password"
-            value={password}
-            onChange={handlePasswordValidation}
-            required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
-          />
-          <span className="text-red-500">{passwordError}</span>
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+              Password
+            </label>
+            <input
+              name="password"
+              type={`${showPassword ? "text" : "password"}`}
+              value={password}
+              onChange={handlePasswordValidation}
+              placeholder="Enter your password"
+              required
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-9 right-3 cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <MdRemoveRedEye />}
+            </span>
+            <span className="text-red-500">{passwordError}</span>
+          </div>
 
           <button
             type="submit"

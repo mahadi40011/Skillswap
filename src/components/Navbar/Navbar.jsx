@@ -21,7 +21,7 @@ const Navbar = () => {
       <div className="my-container navbar">
         <div className="navbar-start flex justify-start items-center">
           <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+            <div tabIndex={0} role="button" className="mr-3 lg:hidden">
               <TiThMenu size={30} />
             </div>
             <ul
@@ -41,7 +41,10 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <img className="w-12 h-12 rounded-full" src={userIcon} alt="" />
-          <Link to={"/login"} className="btn bg-sky-900 border-none text-white text-xl ml-2">
+          <Link
+            to={"/login"}
+            className="btn bg-sky-900 border-none text-white text-xl ml-2"
+          >
             Login
           </Link>
         </div>

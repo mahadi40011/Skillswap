@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaFacebook, FaGithub } from "react-icons/fa";
+import { FaEyeSlash, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
+import { MdRemoveRedEye } from "react-icons/md";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -42,18 +44,24 @@ const Login = () => {
           Please Login
         </h2>
 
-        <div className="flex justify-center gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
           {/* google Login Buttons */}
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition">
-            <FcGoogle className="text-xl" /> <span>Google</span>
+          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center">
+            <FcGoogle className="text-xl" />{" "}
+            <span className="hidden sm:inline">Google</span>{" "}
+            <span className="sm:hidden"> Login with Google</span>
           </button>
           {/* facebook Login Buttons */}
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition text-blue-600">
-            <FaFacebook className="text-xl" /> <span>Facebook</span>
+          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center text-blue-600">
+            <FaFacebook className="text-xl" />{" "}
+            <span className="hidden sm:inline">Facebook</span>{" "}
+            <span className="sm:hidden"> Login with Facebook</span>
           </button>
           {/* github Login Buttons */}
-          <button className="flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition text-gray-800">
-            <FaGithub className="text-xl" /> <span>GitHub</span>
+          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center text-gray-800">
+            <FaGithub className="text-xl" />{" "}
+            <span className="hidden sm:inline">GitHub</span>{" "}
+            <span className="sm:hidden"> Login with GitHub</span>
           </button>
         </div>
 
@@ -79,19 +87,27 @@ const Login = () => {
           <span className="text-red-500">{emailError}</span>
 
           {/* Password */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
-            Password
-          </label>
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={handlePasswordValidation}
-            placeholder="Enter your password"
-            required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
-          />
-          <span className="text-red-500">{passwordError}</span>
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+              Password
+            </label>
+            <input
+              name="password"
+              type={`${showPassword ? "text" : "password"}`}
+              value={password}
+              onChange={handlePasswordValidation}
+              placeholder="Enter your password"
+              required
+              className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+            />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              className="absolute top-9 right-3 cursor-pointer"
+            >
+              {showPassword ? <FaEyeSlash /> : <MdRemoveRedEye />}
+            </span>
+            <span className="text-red-500">{passwordError}</span>
+          </div>
 
           {/* Forgot Password */}
           <div className="flex items-center justify-between text-sm mt-2 mb-5 text-gray-600">
@@ -116,7 +132,7 @@ const Login = () => {
             to="/register"
             className="text-sky-600 font-medium hover:underline"
           >
-          Register
+            Register
           </Link>
         </p>
       </div>
