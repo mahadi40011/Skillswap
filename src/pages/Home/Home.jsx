@@ -1,10 +1,11 @@
 import React from 'react';
+import { useLoaderData } from 'react-router';
 
 const Home = () => {
+  const data = useLoaderData()
+  console.log(data)
   return (
-    <div>
-      <h1>From home</h1>
-      
+    <div className='my-container '>
     </div>
   );
 };
