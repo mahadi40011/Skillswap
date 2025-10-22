@@ -1,2 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+.navbar li a.active {
+@apply border-b-2 border-sky-400
+}
+
+.my-container{
+  @apply container mx-auto
+}
