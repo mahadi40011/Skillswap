@@ -5,6 +5,7 @@ import Profile from "../pages/Profile/Profile";
 import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import TermsConditions from "../components/TermsConditions/TermsConditions";
 import Login from "../pages/Login/Login";
+import Register from "../pages/Register/Register";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
       },
     ],
   },

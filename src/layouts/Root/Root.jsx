@@ -9,7 +9,7 @@ const Root = () => {
       <header>
         <Navbar></Navbar>
       </header>
-      <main className="my-container flex-1">
+      <main className=" flex-1">
         <Outlet></Outlet>
       </main>
       <footer>

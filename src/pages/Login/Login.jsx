@@ -9,8 +9,9 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  const handleEmailFieldOnBlur = () => {
+  const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (e.target.value === "") return setEmailError("");
     if (!emailValidation.test(email)) {
       setEmailError("Email invalid");
       return;
@@ -19,9 +20,9 @@ const Login = () => {
 
   const handlePasswordValidation = (e) => {
     setPassword(e.target.value);
-    if (e.target.value === "") return setPasswordError("");
     const passwordValidation =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
+    if (e.target.value === "") return setPasswordError("");
     if (!passwordValidation.test(password)) {
       setPasswordError(
         "Must include an Uppercase, a Lowercase, a Number, a special character and password at least 6 characters or long"
@@ -32,7 +33,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
   };
 
   return (
@@ -109,14 +109,14 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Signup Link */}
+        {/* Register Link */}
         <p className="text-center text-gray-600 mt-6 text-md">
           Don’t have an account?{" "}
           <Link
             to="/register"
             className="text-sky-600 font-medium hover:underline"
           >
-            Sign up
+          Register
           </Link>
         </p>
       </div>
