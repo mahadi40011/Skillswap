@@ -27,9 +27,36 @@ const Footer = () => {
                 Facebook
               </a>
             </li>
-            <li className="hover:text-sky-400 cursor-pointer">Twitter</li>
-            <li className="hover:text-sky-400 cursor-pointer">Instagram</li>
-            <li className="hover:text-sky-400 cursor-pointer">LinkedIn</li>
+            <li>
+              <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-sky-400 transition"
+              >
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://x.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-sky-400 transition"
+              >
+                Twitter
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-sky-400 transition"
+              >
+                LinkedIn
+              </a>
+            </li>
           </ul>
         </div>
 
