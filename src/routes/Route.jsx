@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router";
 import Home from "../pages/Home/Home";
 import Root from "../layouts/Root/Root";
 import Profile from "../pages/Profile/Profile";
+import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
+import TermsConditions from "../components/TermsConditions/TermsConditions";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         Component: Profile,
+      },
+      {
+        path: "/privacy-policy",
+        Component: PrivacyPolicy,
+      },
+      {
+        path: "/terms",
+        Component: TermsConditions,
       },
     ],
   },
