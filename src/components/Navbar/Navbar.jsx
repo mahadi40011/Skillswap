@@ -41,7 +41,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           <img className="w-12 h-12 rounded-full" src={userIcon} alt="" />
-          <Link className="btn bg-sky-900 border-none text-white text-xl ml-2">
+          <Link to={"/login"} className="btn bg-sky-900 border-none text-white text-xl ml-2">
             Login
           </Link>
         </div>

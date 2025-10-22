@@ -4,6 +4,7 @@ import Root from "../layouts/Root/Root";
 import Profile from "../pages/Profile/Profile";
 import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import TermsConditions from "../components/TermsConditions/TermsConditions";
+import Login from "../pages/Login/Login";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/terms",
         Component: TermsConditions,
+      },
+      {
+        path: "/login",
+        Component: Login,
       },
     ],
   },
