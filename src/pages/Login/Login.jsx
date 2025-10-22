@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-slate-100">
+    <div className="flex items-center justify-center min-h-screen bg-slate-200">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
           Please Login
@@ -119,7 +119,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-lg custom-gradient font-medium transition"
+            className="w-full py-2 rounded-lg custom-gradient font-medium"
           >
             Log In
           </button>
