@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEyeSlash, FaFacebook, FaGithub } from "react-icons/fa";
 import { Link } from "react-router";
 import { MdRemoveRedEye } from "react-icons/md";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const Login = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const { LoginUser } = useContext(AuthContext);
 
   const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -35,13 +38,20 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    LoginUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-200">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
-          Please Login
+          Login Your Account
         </h2>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">

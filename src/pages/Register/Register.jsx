@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthContext";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -9,6 +10,8 @@ const Register = () => {
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+
+  const { createUser } = useContext(AuthContext);
 
   //email validation
   const handleEmailFieldOnBlur = (e) => {
@@ -36,6 +39,13 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   };
 
   return (
