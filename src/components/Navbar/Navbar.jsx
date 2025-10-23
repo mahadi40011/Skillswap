@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from "../../assets/skillSwap-logo.png";
 import userIcon from "../../assets/User-icon.png";
 import { Link, NavLink } from "react-router";
 import { TiThMenu } from "react-icons/ti";
+import { AuthContext } from "../../context/AuthContext";
 
 const Navbar = () => {
+  const {demo} = useContext(AuthContext)
+  console.log(demo)
+
   const navItem = (
     <>
       <li className="font-semibold text-xl">
