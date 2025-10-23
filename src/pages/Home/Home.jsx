@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLoaderData } from 'react-router';
 import SkillCard from '../../components/SkillCard/SkillCard';
+import TopRatedProviders from '../../components/TopRatedProviders/TopRatedProviders';
 
 const Home = () => {
   const data = useLoaderData()
@@ -13,6 +14,9 @@ const Home = () => {
             <SkillCard key={skill.skillId} skill={skill} />
           ))}
         </main>
+        <div className='mt-20 max-w-[1080px] mx-auto'>
+          <TopRatedProviders />
+        </div>
       </div>
     </div>
   );
