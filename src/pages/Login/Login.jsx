@@ -12,7 +12,7 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { LoginUser } = useContext(AuthContext);
+  const { LoginUser, loginWithGoogle } = useContext(AuthContext);
 
   const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,6 +36,16 @@ const Login = () => {
     } else return setPasswordError("");
   };
 
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then((res) => {
+        console.log(res.user);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     LoginUser(email, password)
@@ -50,30 +60,18 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-200">
       <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-slate-800 mb-8">
+        <h2 className="sm:text-3xl text-2xl font-bold text-center text-slate-800 mb-8">
           Login Your Account
         </h2>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6">
-          {/* google Login Buttons */}
-          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center">
-            <FcGoogle className="text-xl" />{" "}
-            <span className="hidden sm:inline">Google</span>{" "}
-            <span className="sm:hidden"> Login with Google</span>
-          </button>
-          {/* facebook Login Buttons */}
-          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center text-blue-600">
-            <FaFacebook className="text-xl" />{" "}
-            <span className="hidden sm:inline">Facebook</span>{" "}
-            <span className="sm:hidden"> Login with Facebook</span>
-          </button>
-          {/* github Login Buttons */}
-          <button className="flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center text-gray-800">
-            <FaGithub className="text-xl" />{" "}
-            <span className="hidden sm:inline">GitHub</span>{" "}
-            <span className="sm:hidden"> Login with GitHub</span>
-          </button>
-        </div>
+        {/* google Login Buttons */}
+        <button
+          onClick={handleGoogleLogin}
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center"
+        >
+          <FcGoogle className="text-xl" />{" "}
+          <span> Login with Google</span>
+        </button>
 
         <div className="text-center text-gray-500 text-md mb-4">
           — or login with email —
