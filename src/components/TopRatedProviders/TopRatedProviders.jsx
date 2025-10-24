@@ -1,6 +1,12 @@
+import Aos from 'aos';
 import React from 'react';
+import { useEffect } from 'react';
 
 const TopRatedProviders = () => {
+ useEffect(() => {
+   Aos.init();
+ }, []);
+
 const providers = [
   {
     id: 1,
@@ -29,32 +35,36 @@ const providers = [
 ];
 
   return (
-    <div className='bg-slate-100 p-15 pt-5 rounded-2xl'>
-        <h2 className="text-3xl font-bold mb-10 text-center">
-           Top Rated Providers
-        </h2>
+    <div className="bg-slate-100 px-6 sm:p-15 py-5 rounded-2xl">
+      <h2 className="text-3xl font-bold mb-10 text-center">
+        Top Rated Providers
+      </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          {providers.map((provider) => (
-            <div
-              key={provider.id}
-              className="bg-white shadow-md rounded-2xl p-5 flex flex-col items-center text-center hover:shadow-xl transition-all"
-            >
-              <img
-                src={provider.image}
-                alt={provider.name}
-                className="w-24 h-24 object-cover mb-4 "
-              />
-              <h3 className="text-xl font-semibold text-gray-800">
-                {provider.name}
-              </h3>
-              <p className="text-gray-500 font-medium text-sm">{provider.skill}</p>
-              <p className="text-yellow-500 font-medium mt-2">
-                Rating ⭐{provider.rating}
-              </p>
-            </div>
-          ))}
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {providers.map((provider) => (
+          <div
+            data-aos="fade-up"
+            data-aos-duration="1500"
+            key={provider.id}
+            className="bg-white shadow-md rounded-2xl p-5 flex flex-col items-center text-center hover:shadow-xl transition-all"
+          >
+            <img
+              src={provider.image}
+              alt={provider.name}
+              className="w-24 h-24 object-cover mb-4 "
+            />
+            <h3 className="text-xl font-semibold text-gray-800">
+              {provider.name}
+            </h3>
+            <p className="text-gray-500 font-medium text-sm">
+              {provider.skill}
+            </p>
+            <p className="text-yellow-500 font-medium mt-2">
+              Rating ⭐{provider.rating}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

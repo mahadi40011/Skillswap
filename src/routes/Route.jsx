@@ -6,21 +6,28 @@ import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import TermsConditions from "../components/TermsConditions/TermsConditions";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
+import SkillDetails from "../pages/SkillDetails/SkillDetails";
+import PrivateRoute from "../privateRoutes/PrivateRoute";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    errorElement: <p>error 404</p>,
+    errorElement: <ErrorPage/>,
     children: [
       {
         path: "/",
         Component: Home,
-        loader: ()=> fetch("/data.json")
+        loader: () => fetch("/data.json"),
       },
       {
         path: "/profile",
-        Component: Profile,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/privacy-policy",
@@ -37,6 +44,15 @@ const router = createBrowserRouter([
       {
         path: "/register",
         Component: Register,
+      },
+      {
+        path: "/skill-details/:id",
+        element: (
+          <PrivateRoute>
+            <SkillDetails />
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/data.json"),
       },
     ],
   },

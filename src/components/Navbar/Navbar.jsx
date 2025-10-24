@@ -1,13 +1,23 @@
 // import React, { useContext } from "react";
 import logo from "../../assets/skillSwap-logo.png";
-import userIcon from "../../assets/User-icon.png";
 import { Link, NavLink } from "react-router";
 import { TiThMenu } from "react-icons/ti";
 import { AuthContext } from "../../context/AuthContext";
+import { useContext } from "react";
 
 const Navbar = () => {
-  // const {demo} = useContext(AuthContext)
-  // console.log(demo)
+  const { user, logOutUser } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    console.log("Log Out");
+    logOutUser()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
   const navItem = (
     <>
@@ -26,11 +36,11 @@ const Navbar = () => {
         <div className="navbar-start flex justify-start items-center">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="mr-3 lg:hidden">
-              <TiThMenu size={30} />
+              <TiThMenu className="cursor-pointer" size={30} />
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-linear-to-r from-slate-900 via-sky-900 to-slate-800 text-gray-300 rounded-b-2xl z-1 mt-5 w-20 p-2"
+              className="menu menu-sm dropdown-content custom-gradient rounded-b-2xl z-1 mt-6 w-20 p-2"
             >
               {navItem}
             </ul>
@@ -44,13 +54,38 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{navItem}</ul>
         </div>
         <div className="navbar-end">
-          <img className="w-12 h-12 rounded-full" src={userIcon} alt="" />
-          <Link
-            to={"/login"}
-            className="btn bg-sky-900 border-none text-white text-xl ml-2"
-          >
-            Login
-          </Link>
+          {user && (
+            <img
+              className="w-12 h-12 rounded-full cursor-pointer"
+              src={user.photoURL}
+              alt="Profile Photo"
+              title={user.displayName}
+            />
+          )}
+          {user ? (
+            <button
+              type="button"
+              onClick={handleLogOut}
+              className="btn bg-sky-900 border-none text-white text-xl ml-2"
+            >
+              Log Out
+            </button>
+          ) : (
+            < >
+              <Link
+                to={"/login"}
+                className="btn bg-sky-900 border-none text-white text-xl ml-2"
+              >
+                Login
+              </Link>
+              <Link
+                to={"/register"}
+                className="btn bg-sky-900 border-none text-white text-xl ml-2"
+              >
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

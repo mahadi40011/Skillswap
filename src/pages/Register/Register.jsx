@@ -1,8 +1,12 @@
 import React, { useContext, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { MdRemoveRedEye } from "react-icons/md";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import { updateProfile } from "firebase/auth";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import { FcGoogle } from "react-icons/fc";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +15,12 @@ const Register = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { createUser, loginWithGoogle, loading, setLoading } = useContext(AuthContext);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
 
   //email validation
   const handleEmailFieldOnBlur = (e) => {
@@ -25,26 +34,55 @@ const Register = () => {
 
   // Password validation
   const handlePasswordValidation = (e) => {
-    setPassword(e.target.value);
-    const passwordValidation =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
-    if (e.target.value === "") return setPasswordError("");
-    if (!passwordValidation.test(password)) {
+    const pass = e.target.value;
+    setPassword(pass);
+    const passwordValidation = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (pass === "") return setPasswordError("");
+    if (!passwordValidation.test(pass)) {
       setPasswordError(
-        "Must include an Uppercase, a Lowercase, a Number, a special character and password at least 6 characters or long"
+        "Must include an Uppercase, a Lowercase and password at least 6 characters or longer"
       );
       return;
     } else return setPasswordError("");
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createUser(email, password)
-      .then((res) => {
-        console.log(res.user);
+  const handleGoogleLogin = () => {
+    loginWithGoogle()
+      .then(() => {
+        setLoading(false);
+        toast.success("Login Successful");
+        navigate(location.state || "/");
       })
       .catch((err) => {
         console.log(err.message);
+        toast.error("Login Unsuccessful");
+      });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const displayName = e.target.name.value;
+    const photoURL = e.target.photoURL.value;
+
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        updateProfile(res.user, {
+          displayName,
+          photoURL,
+        })
+          .then(() => {
+            console.log(res.user);
+            setLoading(false);
+            navigate("/");
+            toast.success("Registration Successful");
+          })
+          .catch((err) => {
+            toast.error(err.message);
+          });
+      })
+      .catch((err) => {
+        toast.error(err.message);
       });
   };
 
@@ -55,6 +93,18 @@ const Register = () => {
           Create Account
         </h2>
 
+        {/* google Login */}
+        <button
+          onClick={handleGoogleLogin}
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center"
+        >
+          <FcGoogle className="text-xl" /> <span> Continue with Google</span>
+        </button>
+
+        <div className="text-center text-gray-500 text-md mb-4">
+          — or SignUp with Email —
+        </div>
+
         <form onSubmit={handleSubmit}>
           {/* Name */}
           <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
@@ -64,18 +114,6 @@ const Register = () => {
             type="text"
             name="name"
             placeholder="Your name"
-            required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
-          />
-
-          {/* Photo URL */}
-          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
-            Photo URL
-          </label>
-          <input
-            type="text"
-            name="photoURL"
-            placeholder="Photo URL"
             required
             className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
           />
@@ -94,6 +132,18 @@ const Register = () => {
             className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
           />
           <span className="text-red-500">{emailError}</span>
+
+          {/* Photo URL */}
+          <label className="block text-sm font-medium text-gray-600 mt-5 mb-1">
+            Photo URL
+          </label>
+          <input
+            type="text"
+            name="photoURL"
+            placeholder="Photo URL"
+            required
+            className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-sky-900"
+          />
 
           {/* Password */}
           <div className="relative">

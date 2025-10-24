@@ -2,10 +2,12 @@ import React from 'react';
 import { useLoaderData } from 'react-router';
 import SkillCard from '../../components/SkillCard/SkillCard';
 import TopRatedProviders from '../../components/TopRatedProviders/TopRatedProviders';
+import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs';
+import HowItWorks from '../../components/HowItWorks/HowItWorks';
 
 const Home = () => {
   const data = useLoaderData()
-  console.log(data)
+
   return (
     <div className="bg-slate-200 py-15">
       <div className="my-container ">
@@ -16,6 +18,8 @@ const Home = () => {
         </main>
         <div className='mt-20 max-w-[1080px] mx-auto'>
           <TopRatedProviders />
+          <WhyChooseUs />
+          <HowItWorks/>
         </div>
       </div>
     </div>

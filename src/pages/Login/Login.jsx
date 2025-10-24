@@ -1,9 +1,11 @@
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { FaEyeSlash, FaFacebook, FaGithub } from "react-icons/fa";
-import { Link } from "react-router";
+import { FaEyeSlash } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router";
 import { MdRemoveRedEye } from "react-icons/md";
 import { AuthContext } from "../../context/AuthContext";
+import toast from "react-hot-toast";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -12,8 +14,17 @@ const Login = () => {
   const [passwordError, setPasswordError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
-  const { LoginUser, loginWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
+  const { LoginUser, loginWithGoogle, loading, setLoading } =
+    useContext(AuthContext);
+
+  if (loading) {
+    return <LoadingSpinner />;
+  }
+
+  //email validation
   const handleEmailFieldOnBlur = (e) => {
     const emailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (e.target.value === "") return setEmailError("");
@@ -23,14 +34,15 @@ const Login = () => {
     } else return setEmailError("");
   };
 
+  // Password validation
   const handlePasswordValidation = (e) => {
-    setPassword(e.target.value);
-    const passwordValidation =
-      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{5,}$/;
-    if (e.target.value === "") return setPasswordError("");
-    if (!passwordValidation.test(password)) {
+    const pass = e.target.value;
+    setPassword(pass);
+    const passwordValidation = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
+    if (pass === "") return setPasswordError("");
+    if (!passwordValidation.test(pass)) {
       setPasswordError(
-        "Must include an Uppercase, a Lowercase, a Number, a special character and password at least 6 characters or long"
+        "Must include an Uppercase, a Lowercase and password at least 6 characters or longer"
       );
       return;
     } else return setPasswordError("");
@@ -38,22 +50,28 @@ const Login = () => {
 
   const handleGoogleLogin = () => {
     loginWithGoogle()
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        setLoading(false);
+        toast.success("Login Successful");
+        navigate(location.state || "/");
       })
       .catch((err) => {
         console.log(err.message);
+        toast.error("Login Unsuccessful");
       });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     LoginUser(email, password)
-      .then((res) => {
-        console.log(res.user);
+      .then(() => {
+        setLoading(false);
+        toast.success("Login Successful");
+        navigate(location.state || "/");
       })
       .catch((err) => {
         console.log(err.message);
+        toast.error("Login Unsuccessful");
       });
   };
 
@@ -64,13 +82,12 @@ const Login = () => {
           Login Your Account
         </h2>
 
-        {/* google Login Buttons */}
+        {/* google Login */}
         <button
           onClick={handleGoogleLogin}
           className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center"
         >
-          <FcGoogle className="text-xl" />{" "}
-          <span> Login with Google</span>
+          <FcGoogle className="text-xl" /> <span> Login with Google</span>
         </button>
 
         <div className="text-center text-gray-500 text-md mb-4">
@@ -140,7 +157,7 @@ const Login = () => {
             to="/register"
             className="text-sky-600 font-medium hover:underline"
           >
-            Register
+            Sign Up
           </Link>
         </p>
       </div>
