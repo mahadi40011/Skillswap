@@ -1,15 +1,13 @@
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import EnrolForm from "../../components/EnrolForm/EnrolForm";
-import ErrorPage from "../ErrorPage/ErrorPage";
 
 const SkillDetails = () => {
   const [formShow, setFormShow]= useState(false)
   const data = useLoaderData();
   const { id } = useParams();
 
-  const skill = data.find((s) => s.skillId === parseInt(id));
-  if (!skill) return <ErrorPage />
+  const skill = data.find((s) => s.skillId == id);
   
   const {
     category,
