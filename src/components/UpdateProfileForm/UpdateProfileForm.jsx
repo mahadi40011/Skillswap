@@ -1,11 +1,10 @@
 import Aos from "aos";
-import { updateProfile } from "firebase/auth";
 import React, { useContext, useEffect } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../context/AuthContext";
 
 const UpdateProfileForm = ({ setUpdateProfile }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, updateUserProfile } = useContext(AuthContext);
 
   useEffect(() => {
     Aos.init();
@@ -15,15 +14,15 @@ const UpdateProfileForm = ({ setUpdateProfile }) => {
     e.preventDefault();
     const displayName = e.target.name.value;
     const photoURL = e.target.photo.value;
-    console.log(displayName, photoURL)
-    e.target.reset();
-    updateProfile(user, {
-      displayName,
-      photoURL,
-    })
+
+    updateUserProfile(displayName, photoURL)
       .then(() => {
-        console.log(user);
-        setUser(user)
+        setUser(() => ({
+          ...user,
+          displayName,
+          photoURL,
+        }));
+        e.target.reset();
         setUpdateProfile(false);
         toast.success("Profile Update Successful");
       })

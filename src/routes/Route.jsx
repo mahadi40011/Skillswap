@@ -9,6 +9,7 @@ import Register from "../pages/Register/Register";
 import SkillDetails from "../pages/SkillDetails/SkillDetails";
 import PrivateRoute from "../privateRoutes/PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         Component: Login,
+      },
+      {
+        path: "/forgot-password",
+        Component: ForgotPassword,
       },
       {
         path: "/register",
