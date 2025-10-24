@@ -14,7 +14,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     Component: Root,
-    errorElement: <ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         loader: () => fetch("/data.json"),
       },
     ],
+  },
+  {
+    path: "*",
+    component: ErrorPage,
   },
 ]);
 
