@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet, useNavigation } from "react-router";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import Navbar from "../components/Navbar/Navbar";
+import Footer from "../components/Footer/Footer";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const Root = () => {
   const navigation = useNavigation();

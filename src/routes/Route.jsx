@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import Home from "../pages/Home/Home";
-import Root from "../layouts/Root/Root";
+import Root from "../layouts/Root";
 import Profile from "../pages/Profile/Profile";
 import PrivacyPolicy from "../components/PrivacyPolicy/PrivacyPolicy";
 import TermsConditions from "../components/TermsConditions/TermsConditions";
