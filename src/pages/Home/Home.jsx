@@ -23,14 +23,14 @@ const Home = () => {
       <title>SkillSwap - Home</title>
       <div className="my-container ">
         <SlidingBanner data={data} />
-        <main className="mt-20">
+        <main className="mt-8 sm:mt-12 md:mt-16 lg:mt-20">
           <div
             data-aos="fade-up"
             data-aos-duration="1500"
             className="flex items-center justify-center my-8"
           >
             <hr className="grow border-t-3 border-gray-300" />
-            <span className="px-4 text-5xl text-gray-800 font-bold">
+            <span className="px-4 text-3xl sm:text-4xl lg:text-5xl text-gray-800 font-bold">
               Popular Skills
             </span>
             <hr className="grow border-t-3 border-gray-300" />

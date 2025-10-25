@@ -12,7 +12,7 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [passwordError, setPasswordError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -42,13 +42,13 @@ const Register = () => {
     const pass = e.target.value;
     setPassword(pass);
     const passwordValidation = /^(?=.*[A-Z])(?=.*[a-z]).{6,}$/;
-    if (pass === "") return setPasswordError("");
+    if (pass === "") return setPasswordError(null);
     if (!passwordValidation.test(pass)) {
       setPasswordError(
         "Must include an Uppercase, a Lowercase and password at least 6 characters or longer"
       );
       return;
-    } else return setPasswordError("");
+    } else return setPasswordError(null);
   };
 
   const handleGoogleLogin = () => {
@@ -65,6 +65,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (passwordError) return;
+
     const displayName = e.target.name.value;
     const photoURL = e.target.photoURL.value;
 
@@ -99,7 +101,7 @@ const Register = () => {
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center"
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center cursor-pointer"
         >
           <FcGoogle className="text-xl" /> <span> Continue with Google</span>
         </button>
@@ -173,7 +175,7 @@ const Register = () => {
 
           <button
             type="submit"
-            className="w-full py-2 mt-7 rounded-lg custom-gradient font-medium "
+            className="w-full py-2 mt-7 rounded-lg custom-gradient cursor-pointer font-medium "
           >
             Sign Up
           </button>

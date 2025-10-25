@@ -92,7 +92,7 @@ const Login = () => {
         {/* google Login */}
         <button
           onClick={handleGoogleLogin}
-          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full text-center"
+          className="flex items-center justify-center gap-2 px-4 py-2 mb-4 rounded-lg border border-gray-300 hover:bg-gray-200 transition w-full cursor-pointer text-center"
         >
           <FcGoogle className="text-xl" /> <span> Login with Google</span>
         </button>
@@ -154,7 +154,7 @@ const Login = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-lg custom-gradient font-medium"
+            className="w-full py-2 rounded-lg custom-gradient cursor-pointer font-medium"
           >
             Log In
           </button>
