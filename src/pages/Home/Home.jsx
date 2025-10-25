@@ -15,6 +15,7 @@ const Home = () => {
 
   return (
     <div className="bg-slate-200 py-15">
+      <title>SkillSwap - Home</title>
       <div className="my-container ">
         <SlidingBanner data={data} />
         <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-10 mt-20">

@@ -27,6 +27,7 @@ const SkillDetails = () => {
 
   return (
     <div className="bg-slate-200 min-h-screen py-5 md:py-15">
+      <title>SkillSwap - SkillDetails</title>
       <div className="max-w-3xl mx-auto p-6  bg-slate-100 shadow-lg rounded-lg">
         <div className="mb-4">
           <img
@@ -35,9 +36,7 @@ const SkillDetails = () => {
             className="w-full h-64  rounded-lg"
           />
         </div>
-        <h2 className=" text-2xl font-bold mb-2">
-          {skillName}
-        </h2>
+        <h2 className=" text-2xl font-bold mb-2">{skillName}</h2>
 
         <div className="flex justify-between my-2">
           <p className="text-lg font-semibold">Price: ${price}</p>

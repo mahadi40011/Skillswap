@@ -4,6 +4,7 @@ import { Link } from "react-router";
 const ErrorPage = () => {
   return (
     <div className="relative flex flex-col items-center justify-center h-screen custom-gradient overflow-hidden">
+      <title>Error-404</title>
       <h1 className="text-[10rem] md:text-[15rem] font-extrabold leading-none tracking-widest animate-pulse">
         404
       </h1>

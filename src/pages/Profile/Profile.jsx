@@ -24,6 +24,7 @@ const Profile = () => {
 
   return (
     <div className="bg-slate-200 min-h-[85vh] flex flex-col justify-start items-center">
+      <title>SkillSwap - Profile</title>
       <div className={` ${updateProfile && "hidden"}`}>
         <div className="flex flex-col md:flex-row text-center md:text-start justify-center items-center gap-6 md:gap-10 p-8 w-fit mt-5 md:mt-10  ">
           <img
