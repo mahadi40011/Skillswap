@@ -35,7 +35,7 @@ const SlidingBanner = ({ data }) => {
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
-        // autoplay={{ delay: 2000 }}
+        autoplay={{ delay: 2000 }}
         loop
       >
         {slideItem}
