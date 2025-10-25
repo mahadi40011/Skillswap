@@ -8,22 +8,24 @@ import "swiper/css/autoplay";
 const SlidingBanner = ({ data }) => {
   const slideItem = data.map((d) => (
     <SwiperSlide>
-      <div className="w-full h-[500px] flex justify-center items-center gap-10 p-20 rounded-2xl bg-amber-50">
-        <div className="w-1/2 space-y-5">
-          <h1
-            className=" text-5xl text-gray-700 font-bold"
-          >
+      <div className="w-full flex flex-col lg:flex-row items-center justify-between gap-8 bg-amber-50 rounded-2xl p-5 sm:p-8 md:p-12 lg:p-20">
+        
+        <div className="w-full lg:w-1/2 space-y-4 text-center lg:text-left">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-700">
             {d.skillName}
           </h1>
-          <p className="text-xl text-gray-500 font-medium">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl font-medium text-gray-500 leading-relaxed">
             {d.description}
           </p>
         </div>
-        <img
-          className="w-1/2 rounded-2xl border h-[350px]"
-          src={d.image}
-          alt=""
-        />
+
+        <div className="w-full lg:w-1/2 flex justify-center">
+          <img
+            className="w-full max-w-md lg:max-w-full h-auto lg:h-[400px] rounded-2xl"
+            src={d.image}
+            alt={d.skillName}
+          />
+        </div>
       </div>
     </SwiperSlide>
   ));
@@ -33,7 +35,7 @@ const SlidingBanner = ({ data }) => {
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 2000 }}
+        // autoplay={{ delay: 2000 }}
         loop
       >
         {slideItem}
