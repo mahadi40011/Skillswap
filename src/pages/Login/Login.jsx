@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router";
@@ -17,8 +17,17 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { LoginUser, loginWithGoogle, loading, setLoading } =
-    useContext(AuthContext);
+  const {
+    LoginUser,
+    loginWithGoogle,
+    loading,
+    setLoading,
+    setLoginEmail,
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    setLoginEmail(email)
+  },[setLoginEmail, email])
 
   if (loading) {
     return <LoadingSpinner />;

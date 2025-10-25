@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import EnrolForm from "../../components/EnrolForm/EnrolForm";
+import "animate.css";
 
 const SkillDetails = () => {
   const [formShow, setFormShow]= useState(false)
@@ -22,7 +23,7 @@ const SkillDetails = () => {
   } = skill;
 
   return (
-    <div className="bg-slate-200 py-5 md:py-15">
+    <div className="bg-slate-200 min-h-screen py-5 md:py-15">
       <div className="max-w-3xl mx-auto p-6  bg-slate-100 shadow-lg rounded-lg">
         <div className="mb-4">
           <img
@@ -31,7 +32,9 @@ const SkillDetails = () => {
             className="w-full h-64  rounded-lg"
           />
         </div>
-        <h2 className="text-2xl font-bold mb-2">{skillName}</h2>
+        <h2 className="animate__backInLeft text-2xl font-bold mb-2">
+          {skillName}
+        </h2>
 
         <div className="flex justify-between my-2">
           <p className="text-lg font-semibold">Price: ${price}</p>

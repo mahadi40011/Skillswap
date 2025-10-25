@@ -3,22 +3,23 @@ import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
-  const { passwordReset } = useContext(AuthContext);
-  
+  const { passwordReset, loginEmail } = useContext(AuthContext);
+
   const handleForgotPassword = (e) => {
     e.preventDefault();
     const email = e.target.email.value;
-    toast.success("Please check your email")
-
 
     passwordReset(email)
       .then(() => {
+        toast.success("Please check your Gmail");
         setTimeout(() => {
-          e.target.reset()
+          e.target.reset();
           window.open("https://mail.google.com/mail/u/0/#inbox");
         }, 1000);
       })
-      .catch(() => {});
+      .catch((err) => {
+        toast.error(err.message);
+      });
   };
   return (
     <div className="flex items-center justify-center min-h-screen bg-slate-200">
@@ -32,6 +33,7 @@ const ForgotPassword = () => {
             Email
           </label>
           <input
+            value={loginEmail}
             type="email"
             name="email"
             placeholder="Enter your email"
