@@ -10,17 +10,29 @@ const UpdateProfileForm = ({ setUpdateProfile }) => {
     Aos.init();
   }, []);
 
+  const existingPhotoUrl = user.photoURL;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const displayName = e.target.name.value;
     const photoURL = e.target.photo.value;
 
-    updateUserProfile(displayName, photoURL)
+    if (!displayName && !photoURL)
+      return toast.error("Please Provide something");
+    if (displayName.length <= 3 || !/^[A-Z]/.test(displayName))
+      return toast.error(
+        "Please Provide Valid Name. First letter is uppercase"
+      );
+
+    const updatedPhotoUrl =
+      photoURL.trim() !== "" ? photoURL : existingPhotoUrl;
+
+    updateUserProfile(displayName, updatedPhotoUrl)
       .then(() => {
         setUser(() => ({
           ...user,
           displayName,
-          photoURL,
+          photoURL: updatedPhotoUrl,
         }));
         e.target.reset();
         setUpdateProfile(false);
@@ -50,7 +62,6 @@ const UpdateProfileForm = ({ setUpdateProfile }) => {
           type="text"
           name="name"
           placeholder="Your Name"
-          required
           className="w-full mb-4 border rounded-lg px-3 py-1.5 outline-none focus:ring-2 focus:ring-sky-900"
         />
 
@@ -59,7 +70,6 @@ const UpdateProfileForm = ({ setUpdateProfile }) => {
           type="text"
           name="photo"
           placeholder="PhotoURL"
-          required
           className="w-full mb-4 border rounded-lg px-3 py-1.5 outline-none focus:ring-2 focus:ring-sky-900"
         />
 
