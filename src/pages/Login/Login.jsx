@@ -17,17 +17,16 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const {
-    LoginUser,
-    loginWithGoogle,
-    loading,
-    setLoading,
-    setLoginEmail,
-  } = useContext(AuthContext);
+  const { LoginUser, loginWithGoogle, loading, setLoading, setLoginEmail } =
+    useContext(AuthContext);
 
   useEffect(() => {
-    setLoginEmail(email)
-  },[setLoginEmail, email])
+    setLoginEmail(email);
+  }, [setLoginEmail, email]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) {
     return <LoadingSpinner />;
@@ -145,7 +144,10 @@ const Login = () => {
 
           {/* Forgot Password */}
           <div className="flex items-center justify-between text-sm mt-2 mb-5 text-gray-600">
-            <Link to="/forgot-password" className="text-sky-600 hover:underline">
+            <Link
+              to="/forgot-password"
+              className="text-sky-600 hover:underline"
+            >
               Forgot password?
             </Link>
           </div>

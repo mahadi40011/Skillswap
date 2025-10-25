@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaEyeSlash } from "react-icons/fa";
 import { MdRemoveRedEye } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
@@ -16,7 +16,12 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
-  const { createUser, loginWithGoogle, loading, setLoading } = useContext(AuthContext);
+  const { createUser, loginWithGoogle, loading, setLoading } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) {
     return <LoadingSpinner />;

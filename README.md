@@ -1,5 +1,4 @@
 # 🌐 SkillSwap
-_A short catchy tagline for your project_
 
 ## 📖 Project Purpose
 This project was built to An interactive platform for individuals to offer, learn, and trade skills within their local area. Whether it’s guitar lessons, language exchange, coding help, or yoga training — users can browse listings, rate experiences, and connect with local skill providers..  

@@ -10,6 +10,7 @@ import SkillDetails from "../pages/SkillDetails/SkillDetails";
 import PrivateRoute from "../privateRoutes/PrivateRoute";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import ForgotPassword from "../pages/ForgotPassword/ForgotPassword";
+import LoadingSpinner from "../components/LoadingSpinner/LoadingSpinner";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
         path: "/",
         Component: Home,
         loader: () => fetch("/data.json"),
+        hydrateFallbackElement: <LoadingSpinner />,
       },
       {
         path: "/profile",
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () => fetch("/data.json"),
+        hydrateFallbackElement: <LoadingSpinner />,
       },
     ],
   },

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import UpdateProfileForm from "../../components/UpdateProfileForm/UpdateProfileForm";
@@ -8,6 +8,10 @@ const Profile = () => {
   const [updateProfile, setUpdateProfile] = useState(false);
 
   const { user, loading } = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) return <LoadingSpinner />;
 

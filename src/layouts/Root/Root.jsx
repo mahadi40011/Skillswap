@@ -6,20 +6,16 @@ import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 const Root = () => {
   const navigation = useNavigation();
-  // if(navigation.state === "loading") return <LoadingSpinner/>
   return (
     <div className="flex flex-col min-h-screen">
-      <header>
+      <header className="sticky top-0 z-10">
         <Navbar></Navbar>
       </header>
 
       <main className=" flex-1">
-        {navigation.state === "loading" ? (
-          <LoadingSpinner />
-        ) : (
-          <Outlet/>
-        )}
+        {navigation.state === "loading" ? <LoadingSpinner /> : <Outlet />}
       </main>
+      
       <footer>
         <Footer />
       </footer>

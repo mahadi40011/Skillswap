@@ -4,15 +4,18 @@ import { Link, NavLink } from "react-router";
 import { TiThMenu } from "react-icons/ti";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import { FadeLoader } from "react-spinners";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const { user, logOutUser } = useContext(AuthContext);
+  const { user, logOutUser, loading } = useContext(AuthContext);
+  // const loading = true
 
   const handleLogOut = () => {
     console.log("Log Out");
     logOutUser()
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        toast.success("Log Out Successful")
       })
       .catch((err) => {
         console.log(err.message);
@@ -62,7 +65,9 @@ const Navbar = () => {
               title={user.displayName}
             />
           )}
-          {user ? (
+          {loading ? (
+              <FadeLoader className="mr-15" color="#ffffff" />
+          ) : user ? (
             <button
               type="button"
               onClick={handleLogOut}
@@ -71,7 +76,7 @@ const Navbar = () => {
               Log Out
             </button>
           ) : (
-            < >
+            <>
               <Link
                 to={"/login"}
                 className="btn bg-sky-900 border-none text-white text-xl ml-2"

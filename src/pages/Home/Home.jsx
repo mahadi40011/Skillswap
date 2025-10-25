@@ -1,13 +1,17 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
-import SkillCard from '../../components/SkillCard/SkillCard';
-import TopRatedProviders from '../../components/TopRatedProviders/TopRatedProviders';
-import WhyChooseUs from '../../components/WhyChooseUs/WhyChooseUs';
-import HowItWorks from '../../components/HowItWorks/HowItWorks';
-import SlidingBanner from '../../components/SlidingBanner/SlidingBanner';
+import React, { useEffect } from "react";
+import { useLoaderData } from "react-router";
+import SkillCard from "../../components/SkillCard/SkillCard";
+import TopRatedProviders from "../../components/TopRatedProviders/TopRatedProviders";
+import WhyChooseUs from "../../components/WhyChooseUs/WhyChooseUs";
+import HowItWorks from "../../components/HowItWorks/HowItWorks";
+import SlidingBanner from "../../components/SlidingBanner/SlidingBanner";
 
 const Home = () => {
-  const data = useLoaderData()
+  const data = useLoaderData();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="bg-slate-200 py-15">

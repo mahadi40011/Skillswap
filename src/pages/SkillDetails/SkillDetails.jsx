@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router";
 import EnrolForm from "../../components/EnrolForm/EnrolForm";
-import "animate.css";
 
 const SkillDetails = () => {
   const [formShow, setFormShow]= useState(false)
   const data = useLoaderData();
   const { id } = useParams();
+
+   useEffect(()=>{
+      window.scrollTo(0,0)
+    },[])
 
   const skill = data.find((s) => s.skillId == id);
   
@@ -32,7 +35,7 @@ const SkillDetails = () => {
             className="w-full h-64  rounded-lg"
           />
         </div>
-        <h2 className="animate__backInLeft text-2xl font-bold mb-2">
+        <h2 className=" text-2xl font-bold mb-2">
           {skillName}
         </h2>
 

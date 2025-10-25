@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
   const { passwordReset, loginEmail } = useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleForgotPassword = (e) => {
     e.preventDefault();
@@ -33,7 +37,7 @@ const ForgotPassword = () => {
             Email
           </label>
           <input
-            value={loginEmail}
+            defaultValue={loginEmail}
             type="email"
             name="email"
             placeholder="Enter your email"
