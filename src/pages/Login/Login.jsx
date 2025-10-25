@@ -64,8 +64,7 @@ const Login = () => {
         navigate(location.state || "/");
       })
       .catch((err) => {
-        console.log(err.message);
-        toast.error("Login Unsuccessful");
+        toast.error(err.message);
       });
   };
 
@@ -78,8 +77,7 @@ const Login = () => {
         navigate(location.state || "/");
       })
       .catch((err) => {
-        console.log(err.message);
-        toast.error("Login Unsuccessful");
+        toast.error(err.message);
       });
   };
 

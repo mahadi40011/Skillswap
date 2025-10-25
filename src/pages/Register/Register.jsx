@@ -59,8 +59,7 @@ const Register = () => {
         navigate(location.state || "/");
       })
       .catch((err) => {
-        console.log(err.message);
-        toast.error("Login Unsuccessful");
+        toast.error(err.message);
       });
   };
 
@@ -71,13 +70,11 @@ const Register = () => {
 
     createUser(email, password)
       .then((res) => {
-        console.log(res.user);
         updateProfile(res.user, {
           displayName,
           photoURL,
         })
           .then(() => {
-            console.log(res.user);
             setLoading(false);
             navigate("/");
             toast.success("Registration Successful");

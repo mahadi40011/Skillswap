@@ -12,13 +12,12 @@ const Navbar = () => {
   // const loading = true
 
   const handleLogOut = () => {
-    console.log("Log Out");
     logOutUser()
       .then(() => {
         toast.success("Log Out Successful")
       })
       .catch((err) => {
-        console.log(err.message);
+        toast.error(err.message);
       });
   };
 
