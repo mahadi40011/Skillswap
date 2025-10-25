@@ -10,7 +10,7 @@ const EnrolForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     e.target.reset()
-    toast.success("Session Selected");
+    toast.success("Session Booked");
   }
   return (
     <div

@@ -25,7 +25,7 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section  className="bg-slate-100 sm:py-15 py-5 sm:px-10 rounded-2xl mt-15">
+    <section className="bg-slate-100 px-6 sm:p-15 py-5 rounded-2xl mt-15">
       <h2 className="text-2xl font-bold mb-8 text-center">⚙️ How It Works</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
