@@ -66,7 +66,7 @@ const router = createBrowserRouter([
   },
   {
     path: "*",
-    component: ErrorPage,
+    Component: ErrorPage,
   },
 ]);
 
