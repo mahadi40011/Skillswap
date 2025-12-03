@@ -162,15 +162,28 @@ const Navbar = () => {
 
                     <ul className="flex flex-col gap-1 text-gray-600 font-semibold  mt-2 w-full">
                       {user ? (
-                        <li
-                          onClick={handleLogOut}
-                          className={`
-                       sidebar-nav-item-style
-                        text-gray-700 hover:bg-sky-100
-                        `}
-                        >
-                          Log Out
-                        </li>
+                        <>
+                          <li className="w-full">
+                            <NavLink
+                              to="/profile"
+                              className={({ isActive }) =>
+                                `sidebar-nav-item-style ${
+                                  isActive
+                                    ? "bg-sky-900 text-white shadow-md"
+                                    : "text-gray-700 hover:bg-sky-100"
+                                }`
+                              }
+                            >
+                              Profile
+                            </NavLink>
+                          </li>
+                          <li
+                            onClick={handleLogOut}
+                            className="sidebar-nav-item-style  text-gray-700 hover:bg-sky-100"
+                          >
+                            Log Out
+                          </li>
+                        </>
                       ) : (
                         authLinks.map((authLink, i) => (
                           <li key={i} className="w-full">
