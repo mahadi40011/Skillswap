@@ -70,11 +70,13 @@ const Navbar = () => {
                     Profile
                   </div>
                 </div>
-                <img
-                  className="w-12 h-12 rounded-full cursor-pointer border border-gray-500"
-                  src={user.photoURL}
-                  alt="Profile Photo"
-                />
+                <NavLink to={"/profile"}>
+                  <img
+                    className="w-12 h-12 rounded-full cursor-pointer border border-gray-500"
+                    src={user.photoURL}
+                    alt="Profile Photo"
+                  />
+                </NavLink>
               </div>
             ) : (
               <div className=" border-white py-2 px-4 rounded-lg items-center font-semibold text-xl flex ">
@@ -109,11 +111,13 @@ const Navbar = () => {
                   </div>
                 </div>
                 {user ? (
-                  <img
-                    className="w-8 h-8 md:h-12 md:w-12 rounded-full cursor-pointer border border-gray-500"
-                    src={user.photoURL}
-                    alt="Profile Photo"
-                  />
+                  <NavLink to="/profile">
+                    <img
+                      className="w-8 h-8 md:h-12 md:w-12 rounded-full cursor-pointer border border-gray-500"
+                      src={user.photoURL}
+                      alt="Profile Photo"
+                    />
+                  </NavLink>
                 ) : (
                   <FaCircleUser
                     className="cursor-pointer rounded-full ml-2"
